@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  
+ <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="text-center text-white">Login/Credentials</h1>
+        </div>
+        <div class="card-body">
+            <form action="/login" method="post">
+                <input type="text" placeholder="Enter the Username" name="username" class="form-control" required>
+                <input type="password" placeholder="Enter the Password" name="password" class="form-control" required>
+               <div style="display: flex;color: aliceblue;justify-content: center;gap: 5px;"> <input style="margin-top: 10px;" type="checkbox" required><span style="margin-top: 10px;">CheckOut</span></div>
+
+               <div style="display: flex; justify-content: center;margin-top: 10px;"><p style="color: greenyellow;">Dont Have an Account? Please Register here <a class="text-white" href="/signup">Register</a></p></div>
+               <button style="width: 100%;font-weight: 600; font-size: large;" class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

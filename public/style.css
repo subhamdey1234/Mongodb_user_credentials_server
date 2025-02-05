@@ -3,7 +3,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 77vh;
+    height: 80vh;
 }
 .card{
     margin: auto;
@@ -16,12 +16,36 @@ body{
   border: 1px solid rgba(232, 192, 192, 0.6);
 }
 
-form  .form-control{
-    margin-top: 16px;
+.form-control {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ffffff8a;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.input-group-text {
     background-color: transparent;
     color: aliceblue;
-    border-radius: 50px;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
 form .form-control::placeholder{
     text-align: center;
     font-weight: 500;

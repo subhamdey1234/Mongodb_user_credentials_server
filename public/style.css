@@ -3,7 +3,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 80vh;
+    min-height: 100vh;
 }
 .card{
     margin: auto;
@@ -23,6 +23,7 @@ body{
     outline: none;
     box-shadow: none;
     background-color: transparent;
+    color: azure;
     
 }
 .input-group {
@@ -33,6 +34,12 @@ body{
     overflow: hidden;
     cursor: pointer;
 }
+.form-control :focus{
+    color: black;
+}
+
+
+
 
 .input-group-text {
     background-color: transparent;
@@ -50,6 +57,9 @@ form .form-control::placeholder{
     text-align: center;
     font-weight: 500;
     color: aliceblue;
+}
+.form-control:focus::placeholder{
+    color: black;
 }
 
 .card .card-header h1{

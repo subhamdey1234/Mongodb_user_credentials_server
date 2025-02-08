@@ -14,17 +14,18 @@
             <h1 class="text-center text-white">Login/Credentials</h1>
         </div>
         <div class="card-body">
-            <form action="/login" method="post">
+            <form action="/login" method="post" onsubmit="return validateForm()">
                 <div class="input-group">
                     <span style="font-size: medium;" class="input-group-text" id="basic-addon1"><i style="font-weight: 800;" class="bi bi-person-circle"></i></span>
-                <input type="text" placeholder="Enter the Username" name="username" class="form-control" required>
+                <input type="text" id="username" placeholder="Enter the Username" name="username" class="form-control" required>
                 </div>
+                <small id="usernameError" class="text-danger"></small>
                 <br>
-                <div class="input-group ">
+                <div class="input-group  mt-1">
                     <span style="font-size: medium;" class="input-group-text" id="passtoggle" onclick="toggle()"><i style="font-weight: 800;" id="eyeIcon" class="bi bi-eye-slash-fill"></i></span>
                 <input type="password" placeholder="Enter the Password" name="password" class="form-control" id="password" required>
                 </div>
-
+                <small id="passwordError" class="text-danger"></small>
 
                <div style="display: flex;color: aliceblue;justify-content: center;gap: 5px;"> <input style="margin-top: 10px;" type="checkbox" required><span style="margin-top: 10px;">CheckOut</span></div>
 
@@ -52,6 +53,40 @@
         }
     }
 
+    function validateForm() {
+        let isValid = true;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const usernameError = document.getElementById('usernameError');
+        const passwordError = document.getElementById('passwordError');
+
+        // Reset error messages
+        usernameError.textContent = '';
+        passwordError.textContent = '';
+
+        // Username validation
+        if (username.length < 4) {
+            usernameError.textContent = 'Username must be at least 4 characters long';
+            isValid = false;
+        }
+        else if(!/^[a-zA-Z0-9_]+$/.test(username)){
+          usernameError.textContent='sorry! Username consisting of number,letters and underscores are allowed';
+          isValid=false;
+}
+        // Password validation
+        if (password.length < 8) {
+            passwordError.textContent = 'Password must be at least 8 characters long';
+            isValid = false;
+        }
+
+        // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        // if (!passwordRegex.test(password)) {
+        //     passwordError.textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+        //     isValid = false;
+        // }
+
+        return isValid;
+    }
 
 
 

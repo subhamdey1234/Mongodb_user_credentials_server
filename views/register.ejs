@@ -15,23 +15,31 @@
             <h1 class="text-center text-white">Signup/Registration</h1>
         </div>
         <div class="card-body">
-            <form action="/signup" method="post">
+            <form action="/signup" method="post" onsubmit="return validator()">
                 <div class="input-group">
                     <span style="font-size: medium;" class="input-group-text" id="basic-addon1"><i style="font-weight: 800;" class="bi bi-envelope-arrow-up-fill"></i></span>
-                <input type="email" placeholder="Enter Email id" name="email" class="form-control" required>
+                <input type="email" placeholder="Enter Email id" name="email" id="email" class="form-control" required>
                 </div>
-                <div class="input-group mt-3">
+                <small id="emailError" class="text-danger"></small>
+                <br>
+                <div class="input-group mt-1">
                     <span style="font-size: medium;" class="input-group-text" id="basic-addon1"><i style="font-weight: 800;" class="bi bi-telephone-fill"></i></span>
-                <input type="number" placeholder="Enter the Mobile Number" name="number" class="form-control" required>
+                <input type="number" placeholder="Enter the Mobile Number" name="number" id="number" class="form-control" required>
                 </div>
-                <div class="input-group mt-3">
+                <small id="numError" class="text-danger"></small>
+                <br>
+                <div class="input-group mt-1">
                     <span style="font-size: medium;" class="input-group-text" id="basic-addon1"><i style="font-weight: 800;" class="bi bi-person-circle"></i></span>
-                <input type="text" placeholder="Create the Username" name="username" class="form-control" required>
+                <input type="text" placeholder="Create the Username" name="username" id="username" class="form-control" required>
                 </div>
-                <div class="input-group mt-3">
+                <small id="usernameError" class="text-danger"></small>
+                <br>
+                <div class="input-group mt-1">
                     <span style="font-size: medium;" class="input-group-text" id="passtoggle" onclick="toggle()"><i style="font-weight: 800;" id="eyeIcon" class="bi bi-eye-slash-fill"></i></span>
                 <input type="password" placeholder="Create the Password" name="password" id="password" class="form-control" required>
                 </div>
+                <small id="passwordError" class="text-danger"></small>
+                <br>
 
                <div style="display: flex; justify-content: center;margin-top: 10px;"><p style="color: greenyellow;">Already Have an Account? Please Login here <a class="text-white" href="/">Login</a></p></div>
                <button style="width: 100%;font-weight: 600; font-size: large;" class="btn btn-success">Signup</button>
@@ -57,8 +65,72 @@
             }
         }
     
+        function validator() {
+    let isValid = true;
     
-    
+    // Get all form elements
+    const email = document.getElementById('email').value;
+    const phoneNumber = document.getElementById('number').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Get error elements
+    const emailError = document.getElementById('emailError');
+    const numError = document.getElementById('numError');
+    const usernameError = document.getElementById('usernameError');
+    const passwordError = document.getElementById('passwordError');
+
+    // Reset all error messages
+    emailError.textContent = '';
+    numError.textContent = '';
+    usernameError.textContent = '';
+    passwordError.textContent = '';
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        emailError.textContent = 'Please enter a valid email address';
+        isValid = false;
+    }
+
+    // Phone number validation
+    if (phoneNumber.length !== 10) {
+        numError.textContent = 'Phone number must be 10 digits';
+        isValid = false;
+    } else if (!/^[6-9]\d{9}$/.test(phoneNumber)) {
+        numError.textContent = 'Please enter a valid Indian mobile number';
+        isValid = false;
+    }
+
+    // Username validation
+    if (username.length < 4) {
+        usernameError.textContent = 'Username must be at least 4 characters long';
+        isValid = false;
+    } else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        usernameError.textContent = 'Username can only contain letters, numbers, and underscores';
+        isValid = false;
+    }
+
+    // Password validation
+    if (password.length < 8) {
+        passwordError.textContent = 'Password must be at least 8 characters long';
+        isValid = false;
+    } else {
+        // Check for password strength
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+        if (!(hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar)) {
+            passwordError.textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+            isValid = false;
+        }
+    }
+
+    return isValid;
+}
+
     
     
     </script>
